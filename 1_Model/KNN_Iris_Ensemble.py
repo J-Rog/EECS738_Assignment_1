@@ -11,6 +11,7 @@ nearest neighbors, the number of neighbors is based on a variable within the fun
 '''
 def KNN_dataframes(x_train, x_test, y_train, y_test):
     print("------------------------------------------")
+    print(x_train.columns[0] + " x " + x_train.columns[1])
     correct_guess = 0
     number_of_neighbors = 5
     #This just populates a list with impossibly large numbers for this given dataset
@@ -107,5 +108,11 @@ ensemble = list(combinations(columns[0:4], 2))
 for i in range(0,len(ensemble)):
     ensemble[i] = list(ensemble[i])
 
+accuracy_total = 0
+
 for combo in ensemble:
-    KNN_dataframes(x_train.loc[:,combo],x_test.loc[:,combo],y_train, y_test)
+    accuracy_total += KNN_dataframes(x_train.loc[:,combo],x_test.loc[:,combo],y_train, y_test)
+
+print("------------------------------------------")
+print("Total Accuracy")
+print(accuracy_total/len(ensemble))
