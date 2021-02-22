@@ -11,14 +11,12 @@ nearest neighbors, the number of neighbors is based on a variable within the fun
 '''
 def KNN_dataframes(x_train, x_test, y_train, y_test):
     print("------------------------------------------")
-    print(y_test)
     correct_guess = 0
     number_of_neighbors = 5
     #This just populates a list with impossibly large numbers for this given dataset
     nearest_neighbors = [(100,"NaN")] * number_of_neighbors
 
     for i in range(0,x_test.shape[0]):
-        print("Iteration " + str(i))
         test_point = (x_test.iloc[i,0],x_test.iloc[i,1])
 
         for j in range(0,x_train.shape[0]):
@@ -39,11 +37,9 @@ def KNN_dataframes(x_train, x_test, y_train, y_test):
         for j in range(0,len(nearest_neighbors)):
             sum_list.append(nearest_neighbors[j][1])
 
-        print(sum_list)
-
         setosa_count = sum_list.count('Iris-setosa')
         versicolor_count = sum_list.count('Iris-versicolor')
-        virginica_count = sum_list.count('Iris-virginica:')
+        virginica_count = sum_list.count('Iris-virginica')
 
         #Guess
         if setosa_count > versicolor_count and setosa_count > virginica_count:
@@ -64,8 +60,8 @@ def KNN_dataframes(x_train, x_test, y_train, y_test):
             else:
                 guess = random.choice(['Iris-setosa','Iris-versicolor','Iris-virginica'])
         #Determine if guess is accurate
-        print("Guess: "+guess)
-        print("Answer: "+y_test.iloc[i,0])
+        #print("Guess: "+guess)
+        #print("Answer: "+y_test.iloc[i,0])
         if guess == y_test.iloc[i,0]:
             correct_guess += 1
 
